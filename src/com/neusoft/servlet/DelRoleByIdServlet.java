@@ -28,10 +28,10 @@ public class DelRoleByIdServlet extends HttpServlet {
         int result = new RoleDaoImple().delRoleById(Integer.parseInt(id));
         if (result != 0) {
             session.setAttribute("delmesg", "É¾³ý³É¹¦");
-            req.getRequestDispatcher("pageRolesServlet?cp=1").forward(req, resp);
+            req.getRequestDispatcher("pageRolesServlet").forward(req, resp);
         } else {
             session.setAttribute("delmesg", "É¾³ýÊ§°Ü");
-            req.getRequestDispatcher("pageRolesServlet?cp=1").forward(req, resp);
+            req.getRequestDispatcher("pageRolesServlet").forward(req, resp);
         }
 
 

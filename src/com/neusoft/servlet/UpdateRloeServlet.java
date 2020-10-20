@@ -31,7 +31,7 @@ public class UpdateRloeServlet extends HttpServlet {
             req.getRequestDispatcher("pageRolesServlet?cp=1").forward(req, resp);
         } else {
             session.setAttribute("delmesg", "Update failed");
-            req.getRequestDispatcher("pageRolesServlet?cp=1").forward(req, resp);
+            req.getRequestDispatcher("pageRolesServlet").forward(req, resp);
         }
     }
 

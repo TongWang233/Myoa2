@@ -32,10 +32,10 @@ public class AddRoleServlet extends HttpServlet {
         int result = new RoleDaoImple().addRole(role);
         if (result != 0) {
             session.setAttribute("delmesg", "addSuccess");
-            req.getRequestDispatcher("pageRolesServlet?cp=1").forward(req, resp);
+            req.getRequestDispatcher("pageRolesServlet").forward(req, resp);
         } else {
             session.setAttribute("delmesg", "add false due to the roleNo");
-            req.getRequestDispatcher("pageRolesServlet?cp=1").forward(req, resp);
+            req.getRequestDispatcher("pageRolesServlet").forward(req, resp);
         }
     }
 

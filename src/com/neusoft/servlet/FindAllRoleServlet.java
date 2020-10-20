@@ -25,7 +25,7 @@ public class FindAllRoleServlet extends HttpServlet {
         }
         List<Role> roles = new RoleDaoImple().findAllRole();
         req.setAttribute("roles", roles);
-        req.getRequestDispatcher("pageRolesServlet?cp=1").forward(req, resp);
+        req.getRequestDispatcher("pageRolesServlet").forward(req, resp);
     }
 
     @Override

@@ -33,10 +33,10 @@ public class DelSelectRoleServlet extends HttpServlet {
         }
         if (count == uids.length) {
             session.setAttribute("delmesg", "delSuccess");
-            req.getRequestDispatcher("pageRolesServlet?cp=1").forward(req, resp);
+            req.getRequestDispatcher("pageRolesServlet").forward(req, resp);
         } else {
             session.setAttribute("delmesg", "delfalse");
-            req.getRequestDispatcher("pageRolesServlet?cp=1").forward(req, resp);
+            req.getRequestDispatcher("pageRolesServlet").forward(req, resp);
         }
 
     }

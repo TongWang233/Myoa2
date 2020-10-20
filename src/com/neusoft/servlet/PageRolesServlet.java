@@ -19,6 +19,7 @@ import java.util.List;
 public class PageRolesServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
         String cp = req.getParameter("cp");
         String pageNum = req.getParameter("pageNum");
         int c = 0;
@@ -26,16 +27,15 @@ public class PageRolesServlet extends HttpServlet {
         if (cp != null && !cp.equals("")) {
             c = Integer.parseInt(cp);
         } else {
-            c = 1;
+            c = session.getAttribute("cp") != null ? (int) session.getAttribute("cp") : 1;
         }
         if (pageNum != null && !pageNum.equals("")) {
             num = Integer.parseInt(pageNum);
         } else {
-            num = 5;
+            num = session.getAttribute("pageNum") != null ? (int) session.getAttribute("pageNum") : 3;
         }
-        HttpSession session = req.getSession();
-        session.setAttribute("cp", cp);
-        session.setAttribute("pageNum", pageNum);
+        session.setAttribute("cp", c);
+        session.setAttribute("pageNum", num);
         //构造分页对象
         //构造分页对象
         PageInfo pageInfo = new PageInfo();

@@ -31,6 +31,11 @@
             + "?cp=${page.currentPageIndex}&pageNum=" + arg + "";
     }
 
+    $(function () {
+        $("#pagenum option[value=${page.pageSize}]").attr(
+            "selected", "select");
+    });
+
     function delUser(id) {
         if (confirm("您确定删除本条记录吗?")) {
             location.href = "${pageContext.request.contextPath}/delRoleByIdServlet?id=" + id;
@@ -87,7 +92,7 @@
                         <td width="13%" align="left" class="tdbg">
                             <input type="text" name="SelectRoleNo"/>
                         </td>
-                        <td width="9%" align="center" class="tdbg">
+                        <td width="9%" align.="center" class="tdbg">
                             <strong>角色名称</strong>
                         </td>
                         <td width="21%" align="left" class="tdbg">
@@ -194,15 +199,15 @@
                             </select>
                             <a href="pageRolesServlet?cp=1">首页&nbsp;</a>
                             <c:if test="${page.hasPrevious==true}">
-                                <a href="pageRolesServlet?cp=${page.currentPageIndex-1}&pageNum=${page.pageSize}">上一页&nbsp;</a>
+                                <a href="pageRolesServlet?cp=${sessionScope.cp-1}&pageNum=${sessionScope.pageNum}">上一页&nbsp;</a>
                             </c:if>
                             <c:forEach begin="1" end="${page.pageCount}" var="i">
                                 <a href="pageRolesServlet?cp=${i}&pageNum=${page.pageSize}">${i}</a>
                             </c:forEach>
                             <c:if test="${page.hasNext==true}">
-                                <a href="pageRolesServlet?cp=${page.currentPageIndex+1}&pageNum=${page.pageSize}">下一页&nbsp;</a>
+                                <a href="pageRolesServlet?cp=${sessionScope.cp+1}&pageNum=${sessionScope.pageNum}">下一页&nbsp;</a>
                             </c:if>
-                            <a href="pageRolesServlet?cp=${page.pageCount}&pageNum=${page.pageSize}">尾页&nbsp;</a>
+                            <a href="pageRolesServlet?cp=${page.pageCount}&pageNum=${sessionScope.pageNum}">尾页&nbsp;</a>
 
                         </td>
                     </tr>
