@@ -9,12 +9,21 @@
 <script type="text/javascript">
 
 </script>
+<style type="text/css">
+    a {
+        text-decoration: none;
+    }
+</style>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
     <title>角色列表</title>
     <link rel="stylesheet" href="../styles/style.css"
           type="text/css"/>
 </head>
+<%
+
+    int pageIndex = (int) session.getAttribute("cp");
+%>
 <script type="text/javascript">
     <%
                 String msg = (String) session.getAttribute("delmesg");
@@ -24,6 +33,7 @@
                 }
 
     %>
+    p:nth - child(2)
 
     function changePageNum(arg) {
         href = "pageRolesServlet?cp=${i}"
@@ -31,10 +41,15 @@
             + "?cp=${page.currentPageIndex}&pageNum=" + arg + "";
     }
 
+    //显示没也显示多少条数据
     $(function () {
         $("#pagenum option[value=${page.pageSize}]").attr(
             "selected", "select");
+        $("#buttom1:nth-child(${sessionScope.cp+3})").css(
+            "color", "red");
+
     });
+
 
     function delUser(id) {
         if (confirm("您确定删除本条记录吗?")) {
@@ -190,24 +205,40 @@
                 <table width="80%" border="0" align=center cellpadding="2"
                        cellspacing="0" bgcolor="#FFFFFF" class="border">
                     <tr>
-                        <td height="40" align="center" class="tdbg">
+                        <td height="40" align="center" class="tdbg" id="buttom1">
                             <select id="pagenum" onchange="changePageNum(this.value)">
                                 <option value="3">3</option>
                                 <option value="5">5</option>
                                 <option value="8">8</option>
                                 <option value="10">10</option>
                             </select>
-                            <a href="pageRolesServlet?cp=1">首页&nbsp;</a>
+                            <a href="pageRolesServlet?cp=1">首页|&nbsp;</a>
                             <c:if test="${page.hasPrevious==true}">
-                                <a href="pageRolesServlet?cp=${sessionScope.cp-1}&pageNum=${sessionScope.pageNum}">上一页&nbsp;</a>
+                                <a href="pageRolesServlet?cp=${sessionScope.cp-1}&pageNum=${sessionScope.pageNum}">上一页|&nbsp;</a>
                             </c:if>
+                            <%
+                                int count = 0;
+                            %>
                             <c:forEach begin="1" end="${page.pageCount}" var="i">
+                                <%
+                                    count++;
+                                %>
+                                <%
+                                    if (count == pageIndex) {
+                                %>
+                                <a href="pageRolesServlet?cp=${i}&pageNum=${page.pageSize}" style="color: red">${i}</a>
+                                <%
+                                } else {
+                                %>
                                 <a href="pageRolesServlet?cp=${i}&pageNum=${page.pageSize}">${i}</a>
+                                <%
+                                    }
+                                %>
                             </c:forEach>
                             <c:if test="${page.hasNext==true}">
-                                <a href="pageRolesServlet?cp=${sessionScope.cp+1}&pageNum=${sessionScope.pageNum}">下一页&nbsp;</a>
+                                <a href="pageRolesServlet?cp=${sessionScope.cp+1}&pageNum=${sessionScope.pageNum}">下一页|&nbsp;</a>
                             </c:if>
-                            <a href="pageRolesServlet?cp=${page.pageCount}&pageNum=${sessionScope.pageNum}">尾页&nbsp;</a>
+                            <a href="pageRolesServlet?cp=${page.pageCount}&pageNum=${sessionScope.pageNum}">尾页|&nbsp;</a>
 
                         </td>
                     </tr>
