@@ -2,6 +2,7 @@ package com.neusoft.servlet;
 
 import com.neusoft.dao.Imple.RoleDaoImple;
 import com.neusoft.pojo.Role;
+import com.neusoft.util.PageInfo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,6 +27,9 @@ public class AddRoleServlet extends HttpServlet {
         HttpSession session = req.getSession();
         String id = req.getParameter("roleNo");
         String name = req.getParameter("roleName");
+        PageInfo pageInfo = (PageInfo) session.getAttribute("pageInfo");
+        //把当前也设置成最后一页
+        session.setAttribute("cp", pageInfo.getPageCount());
         Role role = new Role();
         role.setRoleName(name);
         role.setId(Integer.parseInt(id));
@@ -35,7 +39,7 @@ public class AddRoleServlet extends HttpServlet {
             req.getRequestDispatcher("pageRolesServlet").forward(req, resp);
         } else {
             session.setAttribute("delmesg", "add false due to the roleNo");
-            req.getRequestDispatcher("pageRolesServlet").forward(req, resp);
+            req.getRequestDispatcher("pageRolesServlet&").forward(req, resp);
         }
     }
 

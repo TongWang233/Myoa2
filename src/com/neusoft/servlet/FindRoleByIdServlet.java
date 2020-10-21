@@ -4,6 +4,7 @@ import com.neusoft.dao.Imple.RoleDaoImple;
 import com.neusoft.pojo.Role;
 import com.neusoft.service.RoleService;
 import com.neusoft.service.serviceImple.RoleServiceImple;
+import com.neusoft.util.PageInfo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

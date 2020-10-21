@@ -33,24 +33,17 @@
                 }
 
     %>
-    p:nth - child(2)
 
     function changePageNum(arg) {
-        href = "pageRolesServlet?cp=${i}"
         location.href = "pageRolesServlet"
-            + "?cp=${page.currentPageIndex}&pageNum=" + arg + "";
+            + "?cp=" + 1 + "&pageNum=" + arg + "";
     }
 
     //显示没也显示多少条数据
     $(function () {
         $("#pagenum option[value=${page.pageSize}]").attr(
             "selected", "select");
-        $("#buttom1:nth-child(${sessionScope.cp+3})").css(
-            "color", "red");
-
     });
-
-
     function delUser(id) {
         if (confirm("您确定删除本条记录吗?")) {
             location.href = "${pageContext.request.contextPath}/delRoleByIdServlet?id=" + id;

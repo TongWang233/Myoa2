@@ -47,6 +47,7 @@ public class PageRolesServlet extends HttpServlet {
         pageInfo.setCurrentPageIndex(c);
         List<Role> roles = new RoleDaoImple().pageQueryAll(pageInfo);
         req.setAttribute("page", pageInfo);
+        session.setAttribute("pageInfo", pageInfo);
         req.setAttribute("roles", roles);
         req.getRequestDispatcher(req.getContextPath() + "/files/jueseguanli.jsp").forward(req, resp);
     }

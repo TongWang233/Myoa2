@@ -1,6 +1,7 @@
 package com.neusoft.servlet;
 
 import com.neusoft.dao.Imple.RoleDaoImple;
+import com.neusoft.util.PageInfo;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,7 +29,7 @@ public class UpdateRloeServlet extends HttpServlet {
         int result = new RoleDaoImple().updateRole(Integer.parseInt(id), name);
         if (result != 0) {
             session.setAttribute("delmesg", "update success");
-            req.getRequestDispatcher("pageRolesServlet?cp=1").forward(req, resp);
+            req.getRequestDispatcher("pageRolesServlet").forward(req, resp);
         } else {
             session.setAttribute("delmesg", "Update failed");
             req.getRequestDispatcher("pageRolesServlet").forward(req, resp);
